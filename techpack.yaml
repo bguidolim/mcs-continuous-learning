@@ -200,7 +200,7 @@ components:
     type: plugin
     installAction:
       type: plugin
-      name: "claude-hud@jarrodwatts/claude-hud"
+      name: jarrodwatts/claude-hud
 
   # ── Skills ──────────────────────────────────────────────────────────────
   - id: skill-continuous-learning
