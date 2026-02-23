@@ -12,7 +12,14 @@ prompts:
   - key: PROJECT
     type: fileDetect
     label: "Xcode project / workspace"
-    detectPattern: "*.xcodeproj"
+    detectPattern: 
+      - "*.xcodeproj"
+      - "*.xcworkspace"
+
+  - key: BRANCH_PREFIX
+    type: input
+    label: "Branch prefix (e.g. feature) -> feature/add-login-screen"
+    default: "feature"
 
 # ---------------------------------------------------------------------------
 # Components (short IDs — auto-prefixed by engine with `bruno-setup.`)
@@ -214,6 +221,7 @@ components:
     type: hookFile
     dependencies: [jq]
     isRequired: true
+    hookEvent: SessionStart
     installAction:
       type: copyPackFile
       source: hooks/session_start.sh
@@ -224,6 +232,7 @@ components:
     displayName: Continuous learning activator
     description: Reminds to evaluate learnings on each prompt
     type: hookFile
+    hookEvent: PreToolUse
     installAction:
       type: copyPackFile
       source: hooks/continuous-learning-activator.sh
@@ -235,6 +244,7 @@ components:
     description: Checks Ollama health and syncs docs-mcp-server library on session start
     type: hookFile
     dependencies: [ollama, docs-mcp-server]
+    hookEvent: SessionStart
     installAction:
       type: copyPackFile
       source: hooks/ollama-status.sh
@@ -246,6 +256,7 @@ components:
     description: Reports booted iOS simulator UUID on session start
     type: hookFile
     dependencies: [jq]
+    hookEvent: SessionStart
     installAction:
       type: copyPackFile
       source: hooks/ios-simulator-status.sh
@@ -313,6 +324,11 @@ templates:
     placeholders:
       - __PROJECT__
     contentFile: templates/ios.md
+
+  - sectionIdentifier: bruno-setup.git
+    placeholders:
+      - __BRANCH_PREFIX__
+    contentFile: templates/git.md
 
 # ---------------------------------------------------------------------------
 # Configure project script — runs during `mcs configure`

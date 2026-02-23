@@ -10,7 +10,7 @@ Branches follow the pattern: `bruno/{ticket}-short-description` (e.g. `bruno/ABC
 
 1. **Analyze changes**:
    - Run `git status` (never use `-uall`) and `git diff` (staged + unstaged) in parallel.
-   - Extract the **ticket number** from the branch name (pattern: `bruno/{ticket}-*` or `{ticket}-*`). If not found, ask the user.
+   - Extract the **ticket number** from the branch name (pattern: `__BRANCH_PREFIX__/{ticket}-*` or `{ticket}-*`). If not found, ask the user.
 
 2. **Stage and commit**:
    - Stage relevant files (prefer specific files over `git add -A`; never stage `.env` or credentials).

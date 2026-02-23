@@ -19,9 +19,7 @@ if command -v xcrun >/dev/null 2>&1; then
     if [ -n "$booted_sim" ]; then
         sim_name=$(echo "$booted_sim" | jq -r '.name' 2>/dev/null)
         sim_udid=$(echo "$booted_sim" | jq -r '.udid' 2>/dev/null)
-        sim_runtime=$(echo "$booted_sim" | jq -r '.runtime' 2>/dev/null \
-            | sed 's/com.apple.CoreSimulator.SimRuntime.//;s/-/./g')
-        context+="Simulator: $sim_name ($sim_runtime) [$sim_udid]"
+        context+="Booted Simulator: $sim_name [$sim_udid]"
     fi
 fi
 
