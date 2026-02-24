@@ -39,20 +39,6 @@ components:
         section: Dependencies
         command: brew
 
-  - id: claude
-    displayName: Claude Code
-    description: The main reason why you're here
-    type: brewPackage
-    dependencies: [homebrew]
-    installAction:
-      type: brewInstall
-      package: claude-code
-    doctorChecks:
-      - type: commandExists
-        name: Claude Code
-        section: Dependencies
-        command: claude
-
   - id: node
     displayName: Node.js
     description: JavaScript runtime (for npx-based MCP servers)
