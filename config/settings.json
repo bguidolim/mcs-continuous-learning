@@ -8,5 +8,9 @@
   "permissions": {
     "defaultMode": "plan"
   },
-  "alwaysThinkingEnabled": true
+  "alwaysThinkingEnabled": true,
+  "attribution": {
+    "commit": "",
+    "pr": ""
+  }
 }
