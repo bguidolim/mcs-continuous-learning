@@ -2,7 +2,7 @@ schemaVersion: 1
 identifier: bruno-setup
 displayName: "Bruno's Personal Setup"
 description: Combined Core + iOS development environment for Claude Code
-version: "1.0.1"
+version: "1.0.2"
 minMCSVersion: "2026.2.24"
 
 # ---------------------------------------------------------------------------
@@ -275,10 +275,11 @@ configureProject:
 # Supplementary doctor checks
 # ---------------------------------------------------------------------------
 supplementaryDoctorChecks:
-  - type: shellScript
+  - type: commandExists
     name: Xcode Command Line Tools
     section: iOS
-    command: "xcode-select -p >/dev/null 2>&1"
+    command: xcode-select
+    args: ["-p"]
     fixCommand: "xcode-select --install"
 
   - type: hookEventExists
@@ -292,8 +293,9 @@ supplementaryDoctorChecks:
     keyPath: permissions.defaultMode
     expectedValue: plan
 
-  - type: shellScript
+  - type: commandExists
     name: "Ollama service running"
     section: AI Models
-    command: "curl -sf http://localhost:11434/api/tags >/dev/null 2>&1"
+    command: curl
+    args: ["-sf", "http://localhost:11434/api/tags"]
     fixCommand: "open -a Ollama"
