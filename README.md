@@ -1,8 +1,8 @@
 # Bruno's Personal Setup
 
-A [tech pack](https://github.com/bguidolim/MyClaudeSetup) that turns Claude Code into a **self-improving iOS development environment** — with persistent memory, semantic code navigation, Xcode integration, and opinionated git workflows.
+A [tech pack](https://github.com/bguidolim/mcs) that turns Claude Code into a **self-improving iOS development environment** — with persistent memory, semantic code navigation, Xcode integration, and opinionated git workflows.
 
-Built for the [`mcs`](https://github.com/bguidolim/MyClaudeSetup) configuration engine.
+Built for the [`mcs`](https://github.com/bguidolim/mcs) configuration engine.
 
 ```
 identifier: bruno-setup
@@ -14,7 +14,7 @@ requires:   mcs >= 2026.2.24
 
 ## What Is This?
 
-[`mcs`](https://github.com/bguidolim/MyClaudeSetup) is a configuration engine for Claude Code — think Terraform for your AI coding environment. Instead of manually registering MCP servers, copying hook scripts, and editing settings for every project, you define everything in a **tech pack** and let the engine handle installation.
+[`mcs`](https://github.com/bguidolim/mcs) is a configuration engine for Claude Code — think Terraform for your AI coding environment. Instead of manually registering MCP servers, copying hook scripts, and editing settings for every project, you define everything in a **tech pack** and let the engine handle installation.
 
 This tech pack packages a complete Claude Code setup: 4 MCP servers, 5 plugins, 4 session hooks, 2 slash commands, custom skills, per-project templates, and a **continuous learning system** that gives Claude long-term memory across sessions.
 
@@ -267,15 +267,15 @@ For deeper changes, fork the pack and make it yours:
 3. **Modify** templates, hooks, or skills to match your workflow
 4. **Register** your fork: `mcs pack add https://github.com/you/your-fork`
 
-The `techpack.yaml` schema is documented in the [MCS tech pack schema reference](https://github.com/bguidolim/MyClaudeSetup/blob/main/docs/techpack-schema.md).
+The `techpack.yaml` schema is documented in the [MCS tech pack schema reference](https://github.com/bguidolim/mcs/blob/main/docs/techpack-schema.md).
 
 ---
 
 ## Links
 
-- [MCS (My Claude Setup)](https://github.com/bguidolim/MyClaudeSetup) — the configuration engine
-- [Creating Tech Packs](https://github.com/bguidolim/MyClaudeSetup/blob/main/docs/creating-tech-packs.md) — guide for building your own
-- [Tech Pack Schema](https://github.com/bguidolim/MyClaudeSetup/blob/main/docs/techpack-schema.md) — full YAML reference
+- [MCS (My Claude Setup)](https://github.com/bguidolim/mcs) — the configuration engine
+- [Creating Tech Packs](https://github.com/bguidolim/mcs/blob/main/docs/creating-tech-packs.md) — guide for building your own
+- [Tech Pack Schema](https://github.com/bguidolim/mcs/blob/main/docs/techpack-schema.md) — full YAML reference
 
 ---
 
