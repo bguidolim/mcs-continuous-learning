@@ -3,7 +3,7 @@ identifier: bruno-setup
 displayName: "Bruno's Personal Setup"
 description: Combined Core + iOS development environment for Claude Code
 version: "1.0.0"
-minMCSVersion: "2.1.0"
+minMCSVersion: "2026.2.24"
 
 # ---------------------------------------------------------------------------
 # Prompts — resolved interactively during `mcs configure`
