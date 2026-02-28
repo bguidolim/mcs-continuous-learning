@@ -15,7 +15,7 @@ prompts:
     default: "feature"
 
 # ---------------------------------------------------------------------------
-# Components (short IDs — auto-prefixed by engine with `mcs-continuous-learning.`)
+# Components
 # ---------------------------------------------------------------------------
 components:
   # ── Dependencies ────────────────────────────────────────────────────────
@@ -98,7 +98,7 @@ components:
   - id: hook-continuous-learning
     displayName: Continuous learning activator
     description: Reminds to evaluate learnings on each prompt
-    hookEvent: PreToolUse
+    hookEvent: UserPromptSubmit
     hook:
       source: hooks/continuous-learning-activator.sh
       destination: continuous-learning-activator.sh

@@ -53,7 +53,7 @@ This pack implements a **closed-loop knowledge system** that captures valuable i
 
 | Piece | What | How |
 |-------|------|-----|
-| **Activator Hook** | Triggers evaluation after every prompt | A `PreToolUse` hook reminds Claude to check if the current task produced extractable knowledge |
+| **Activator Hook** | Triggers evaluation after every prompt | A `UserPromptSubmit` hook reminds Claude to check if the current task produced extractable knowledge |
 | **Continuous Learning Skill** | Structures and saves knowledge | A Claude Code skill with extraction rules, quality gates, naming conventions, and ADR-inspired templates |
 | **Memory Files** | Persistent storage | Structured markdown files in `.claude/memories/` — version-controlled, human-readable, editable |
 | **Semantic Search** | Retrieval at session start | `docs-mcp-server` + Ollama embeddings index memory files and serve them via natural-language search |
@@ -117,7 +117,7 @@ Decisions use an ADR-inspired template: **Decision > Context > Options Considere
 | Hook | Event | What It Does |
 |------|-------|-------------|
 | **ollama-status.sh** | `SessionStart` | Checks Ollama health, background-indexes memory files for semantic search |
-| **continuous-learning-activator.sh** | `PreToolUse` | Reminds Claude to evaluate knowledge extraction after each prompt |
+| **continuous-learning-activator.sh** | `UserPromptSubmit` | Reminds Claude to evaluate knowledge extraction after each prompt |
 
 ### Slash Commands
 
