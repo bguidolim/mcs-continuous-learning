@@ -3,6 +3,7 @@ identifier: mcs-continuous-learning
 displayName: "Continuous Learning"
 description: Persistent memory and knowledge management for Claude Code
 version: "1.0.0"
+author: Bruno Guidolim
 minMCSVersion: "2026.2.28"
 
 # ---------------------------------------------------------------------------
