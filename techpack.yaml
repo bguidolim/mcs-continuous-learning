@@ -49,14 +49,16 @@ components:
 
   - id: ollama
     displayName: Ollama
-    description: Local LLM runtime (official installer, supports all Apple Silicon)
+    description: Local LLM runtime
+    dependencies: [homebrew]
+    brew: ollama
+
+  - id: ollama-service
+    displayName: Ollama service
+    description: Start Ollama as background service
     type: configuration
-    shell: "curl -fsSL https://ollama.com/install.sh | sh"
-    doctorChecks:
-      - type: commandExists
-        name: Ollama
-        section: Dependencies
-        command: ollama
+    dependencies: [ollama]
+    shell: "brew services start ollama"
 
   - id: ollama-nomic-embed
     description: Pull nomic-embed-text model for docs-mcp-server embeddings
