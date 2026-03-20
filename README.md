@@ -118,12 +118,6 @@ Decisions use an ADR-inspired template: **Decision > Context > Options Considere
 | **ollama-status.sh** | `SessionStart` | Checks Ollama health, background-indexes memory files for semantic search |
 | **continuous-learning-activator.sh** | `UserPromptSubmit` | Reminds Claude to evaluate knowledge extraction after each prompt |
 
-### Slash Commands
-
-| Command | Description |
-|---------|-------------|
-| `/pr` | Full pipeline: commit > push > create PR via `gh` > trigger knowledge capture |
-
 ### Templates (CLAUDE.local.md)
 
 | Section | Instructions |
@@ -175,8 +169,6 @@ mcs-continuous-learning/
 ├── hooks/
 │   ├── ollama-status.sh                # Ollama health + memory re-indexing
 │   └── continuous-learning-activator.sh # Knowledge extraction reminder
-├── commands/
-│   └── pr.md                           # /pr slash command (triggers learning capture)
 ├── skills/
 │   └── continuous-learning/
 │       ├── SKILL.md                    # Extraction rules and workflow

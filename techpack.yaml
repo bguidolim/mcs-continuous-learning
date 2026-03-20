@@ -121,15 +121,6 @@ components:
       source: hooks/sync-memories.sh
       destination: sync-memories.sh
 
-  # ── Commands ────────────────────────────────────────────────────────────
-  - id: command-pr
-    displayName: /pr command
-    description: Automates stage, commit, push, and PR creation with ticket extraction
-    dependencies: [gh]
-    command:
-      source: commands/pr.md
-      destination: pr.md
-
   # ── Configuration ───────────────────────────────────────────────────────
   - id: settings
     displayName: Settings
