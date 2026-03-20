@@ -6,15 +6,6 @@ author: Bruno Guidolim
 minMCSVersion: "2026.2.28"
 
 # ---------------------------------------------------------------------------
-# Prompts — resolved interactively during `mcs configure`
-# ---------------------------------------------------------------------------
-prompts:
-  - key: BRANCH_PREFIX
-    type: input
-    label: "Branch prefix (e.g. feature) -> feature/add-login-screen"
-    default: "feature"
-
-# ---------------------------------------------------------------------------
 # Components
 # ---------------------------------------------------------------------------
 components:
