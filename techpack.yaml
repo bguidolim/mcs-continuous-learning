@@ -3,7 +3,7 @@ identifier: mcs-continuous-learning
 displayName: "Continuous Learning"
 description: Persistent memory and knowledge management for Claude Code
 author: Bruno Guidolim
-minMCSVersion: "2026.2.28"
+minMCSVersion: "2026.3.22"
 
 # ---------------------------------------------------------------------------
 # Components
@@ -108,9 +108,24 @@ components:
     description: Checks Ollama health and syncs docs-mcp-server library on session start
     dependencies: [ollama, docs-mcp-server, skill-continuous-learning, jq]
     hookEvent: SessionStart
+    hookAsync: true
+    hookTimeout: 120
+    hookStatusMessage: "Indexing memories..."
     hook:
       source: hooks/sync-memories.sh
       destination: sync-memories.sh
+
+  - id: hook-reindex-memories
+    displayName: Reindex memories hook
+    description: Reindexes docs-mcp-server library when memories have changed mid-session
+    dependencies: [ollama, docs-mcp-server, jq]
+    hookEvent: UserPromptSubmit
+    hookAsync: true
+    hookTimeout: 120
+    hookStatusMessage: "Reindexing memories..."
+    hook:
+      source: hooks/reindex-memories.sh
+      destination: reindex-memories.sh
 
   # ── Configuration ───────────────────────────────────────────────────────
   - id: settings
@@ -126,6 +141,7 @@ components:
     gitignore:
       - "*.local.*"
       - ".claude/memories"
+      - ".claude/.mcs-last-indexed"
 
 # ---------------------------------------------------------------------------
 # Templates — CLAUDE.local.md sections
