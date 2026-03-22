@@ -19,10 +19,11 @@ echo "$input_data" | jq '.' >/dev/null 2>&1 || exit 0
 # Exit early if Ollama is not running
 curl -s --max-time 2 http://localhost:11434/api/tags >/dev/null 2>&1 || exit 0
 
-repo_name=$(basename "$(git rev-parse --show-toplevel 2>/dev/null)" 2>/dev/null || echo "")
-[ -n "$repo_name" ] || exit 0
+project_root=$(git rev-parse --show-toplevel 2>/dev/null || echo "")
+[ -n "$project_root" ] || exit 0
 
-memories_path="$(git rev-parse --show-toplevel 2>/dev/null)/$MEMORIES_DIR"
+repo_name=$(basename "$project_root")
+memories_path="$project_root/$MEMORIES_DIR"
 
 # --- Staleness check ---
 # If timestamp file exists and no memories are newer, nothing to do.
