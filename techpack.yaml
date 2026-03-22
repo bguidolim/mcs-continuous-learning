@@ -124,8 +124,8 @@ components:
     hookTimeout: 120
     hookStatusMessage: "Reindexing memories..."
     hook:
-      source: hooks/reindex-memories.sh
-      destination: reindex-memories.sh
+      source: hooks/sync-memories.sh
+      destination: sync-memories.sh
 
   # ── Configuration ───────────────────────────────────────────────────────
   - id: settings
