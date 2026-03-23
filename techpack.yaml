@@ -33,11 +33,6 @@ components:
     dependencies: [homebrew]
     brew: gh
 
-  - id: jq
-    description: JSON processor (used by hooks)
-    dependencies: [homebrew]
-    brew: jq
-
   - id: ollama
     displayName: Ollama
     description: Local LLM runtime
@@ -106,7 +101,7 @@ components:
   - id: hook-sync-memories
     displayName: Sync memories hook
     description: Checks Ollama health and syncs docs-mcp-server library on session start
-    dependencies: [ollama, docs-mcp-server, skill-continuous-learning, jq]
+    dependencies: [ollama, docs-mcp-server, skill-continuous-learning]
     hookEvent: SessionStart
     hookAsync: true
     hookTimeout: 120
@@ -118,7 +113,7 @@ components:
   - id: hook-reindex-memories
     displayName: Reindex memories hook
     description: Reindexes docs-mcp-server library when memories have changed mid-session
-    dependencies: [ollama, docs-mcp-server, jq]
+    dependencies: [ollama, docs-mcp-server]
     hookEvent: UserPromptSubmit
     hookAsync: true
     hookTimeout: 120
