@@ -5,7 +5,7 @@ A [tech pack](https://github.com/mcs-cli/mcs) that gives Claude Code **persisten
 Built for the [`mcs`](https://github.com/mcs-cli/mcs) configuration engine.
 
 ```
-identifier: mcs-continuous-learning
+identifier: memory
 requires:   mcs >= 2026.2.28
 ```
 
@@ -162,7 +162,7 @@ mcs doctor
 ## Directory Structure
 
 ```
-mcs-continuous-learning/
+memory/
 ├── techpack.yaml                       # Manifest — defines all components
 ├── config/
 │   └── settings.json                   # Disables built-in auto-memory (autoMemoryEnabled)
@@ -184,8 +184,8 @@ mcs-continuous-learning/
 
 | Pack | Description |
 |------|-------------|
-| [mcs-core-pack](https://github.com/mcs-cli/mcs-core-pack) | Foundational settings, plugins, and git workflows |
-| [mcs-ios-pack](https://github.com/mcs-cli/mcs-ios-pack) | Xcode integration, simulator management, and Apple documentation |
+| [dev](https://github.com/mcs-cli/dev) | Foundational settings, plugins, and git workflows |
+| [ios](https://github.com/mcs-cli/ios) | Xcode integration, simulator management, and Apple documentation |
 
 ---
 
