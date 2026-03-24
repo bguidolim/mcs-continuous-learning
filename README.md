@@ -191,7 +191,7 @@ memory/
 
 ## Links
 
-- [MCS (My Claude Setup)](https://github.com/mcs-cli/mcs) — the configuration engine
+- [MCS](https://github.com/mcs-cli/mcs) — the configuration engine
 - [Creating Tech Packs](https://github.com/mcs-cli/mcs/blob/main/docs/creating-tech-packs.md) — guide for building your own
 - [Tech Pack Schema](https://github.com/mcs-cli/mcs/blob/main/docs/techpack-schema.md) — full YAML reference
 
