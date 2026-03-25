@@ -1,6 +1,6 @@
 schemaVersion: 1
 identifier: memory
-displayName: "Continuous Learning"
+displayName: "Memory"
 description: Persistent memory and knowledge management for Claude Code
 author: Bruno Guidolim
 minMCSVersion: "2026.3.22"

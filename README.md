@@ -1,4 +1,4 @@
-# Continuous Learning
+# Memory
 
 A [tech pack](https://github.com/mcs-cli/mcs) that gives Claude Code **persistent memory across sessions** — capturing debugging discoveries, architectural decisions, and project conventions into a searchable knowledge base that makes Claude increasingly effective over time.
 
@@ -6,7 +6,7 @@ Built for the [`mcs`](https://github.com/mcs-cli/mcs) configuration engine.
 
 ```
 identifier: memory
-requires:   mcs >= 2026.2.28
+requires:   mcs >= 2026.3.22
 ```
 
 ---
@@ -115,7 +115,8 @@ Decisions use an ADR-inspired template: **Decision > Context > Options Considere
 
 | Hook | Event | What It Does |
 |------|-------|-------------|
-| **ollama-status.sh** | `SessionStart` | Checks Ollama health, background-indexes memory files for semantic search |
+| **sync-memories.sh** | `SessionStart` | Checks Ollama health and syncs docs-mcp-server library on session start |
+| **sync-memories.sh** | `UserPromptSubmit` | Reindexes docs-mcp-server library when memories have changed mid-session |
 | **continuous-learning-activator.sh** | `UserPromptSubmit` | Reminds Claude to evaluate knowledge extraction after each prompt |
 
 ### Templates (CLAUDE.local.md)
@@ -167,7 +168,7 @@ memory/
 ├── config/
 │   └── settings.json                   # Disables built-in auto-memory (autoMemoryEnabled)
 ├── hooks/
-│   ├── ollama-status.sh                # Ollama health + memory re-indexing
+│   ├── sync-memories.sh                # Ollama health + memory indexing/reindexing
 │   └── continuous-learning-activator.sh # Knowledge extraction reminder
 ├── skills/
 │   └── continuous-learning/
