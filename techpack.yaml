@@ -82,6 +82,13 @@ components:
       source: skills/continuous-learning
       destination: continuous-learning
 
+  - id: skill-memory-audit
+    displayName: memory-audit skill
+    description: Reviews and audits memories to keep the knowledge base lean and valuable
+    skill:
+      source: skills/memory-audit
+      destination: memory-audit
+
   # ── Hooks ───────────────────────────────────────────────────────────────
   - id: hook-continuous-learning
     displayName: Continuous learning activator

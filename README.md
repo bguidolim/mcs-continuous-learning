@@ -79,9 +79,9 @@ The system captures two categories of knowledge:
 
 **Learnings** — non-obvious discoveries from debugging and investigation:
 ```
-.claude/memories/learning_swiftui_task_cancellation_on_view_dismiss.md
-.claude/memories/learning_core_data_batch_insert_memory_spike.md
-.claude/memories/learning_xcode_preview_crash_missing_environment.md
+.claude/memories/learning_background_task_watchdog_timeout.md
+.claude/memories/learning_orm_batch_insert_memory_spike.md
+.claude/memories/learning_ci_cache_invalidation_on_dependency_update.md
 ```
 
 Each learning follows a structured template: **Problem > Trigger Conditions > Solution > Verification > Example > Notes > References**.
@@ -110,6 +110,7 @@ Decisions use an ADR-inspired template: **Decision > Context > Options Considere
 | Skill | Description |
 |-------|-------------|
 | **continuous-learning** | Extracts learnings and decisions from sessions into structured memory files |
+| **memory-audit** | Reviews and audits memories to keep the knowledge base lean and valuable |
 
 ### Session Hooks
 
@@ -171,10 +172,12 @@ memory/
 │   ├── sync-memories.sh                # Ollama health + memory indexing/reindexing
 │   └── continuous-learning-activator.sh # Knowledge extraction reminder
 ├── skills/
-│   └── continuous-learning/
-│       ├── SKILL.md                    # Extraction rules and workflow
-│       └── references/
-│           └── templates.md            # Learning + Decision memory templates
+│   ├── continuous-learning/
+│   │   ├── SKILL.md                    # Extraction rules and workflow
+│   │   └── references/
+│   │       └── templates.md            # Learning + Decision memory templates
+│   └── memory-audit/
+│       └── SKILL.md                    # Audit workflow with KEEP/DROP/UPDATE verdicts
 └── templates/
     └── continuous-learning.md          # "Search KB before any task"
 ```
