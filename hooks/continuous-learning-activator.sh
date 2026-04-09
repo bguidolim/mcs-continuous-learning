@@ -1,12 +1,14 @@
 #!/bin/bash
 
 cat << 'EOF'
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-🧠 MANDATORY MEMORY EVALUATION REQUIRED
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+MANDATORY MEMORY — CHECK & EVALUATE
 
-After completing this request, evaluate whether it produced
-extractable knowledge or decisions worth saving to memory.
+BEFORE → If this request starts a new sub-task (writing tests,
+refactoring, integrating, deploying, etc.), search the KB
+for relevant patterns and conventions before executing.
+
+AFTER  → Evaluate whether this request produced extractable
+knowledge or decisions worth saving to memory.
 
 LEARNINGS → Non-obvious debugging, workarounds, error resolutions
   Save as: learning_<topic>_<specific>
@@ -14,7 +16,6 @@ LEARNINGS → Non-obvious debugging, workarounds, error resolutions
 DECISIONS → Architecture choices, conventions, preferences, tool selections
   Save as: decision_<domain>_<topic>
 
-If YES to either → Use Skill(continuous-learning) to extract
+If saving → Use Skill(continuous-learning) to extract
 and save to <project>/.claude/memories/
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 EOF
