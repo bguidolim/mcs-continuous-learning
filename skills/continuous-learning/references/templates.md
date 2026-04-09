@@ -20,6 +20,8 @@ These apply to **all** templates below:
 ## Learning Memory Template
 
 ```markdown
+# Learning: [concise title]
+
 ## Problem
 [Clear description of the problem]
 
@@ -44,7 +46,7 @@ These apply to **all** templates below:
 
 ### Filled Example
 
-```markdown
+````markdown
 # Learning: Background task completion handler must be called before suspension
 
 ## Problem
@@ -87,7 +89,7 @@ performRequest { result in
 
 ## References
 - https://developer.apple.com/documentation/uikit/uiapplication/1623031-beginbackgroundtask
-```
+````
 
 ---
 
@@ -96,6 +98,8 @@ performRequest { result in
 Use for architectural decisions, tool choices, or patterns with meaningful trade-offs.
 
 ```markdown
+# Decision: [concise title]
+
 ## Decision
 [One-sentence summary of what was decided]
 
@@ -124,7 +128,7 @@ Use for architectural decisions, tool choices, or patterns with meaningful trade
 
 ### Filled Example
 
-```markdown
+````markdown
 # Decision: Repository pattern for data access layer
 
 ## Decision
@@ -171,7 +175,7 @@ struct UserRepository: UserRepositoryType {
 
 ## References
 - Martin Fowler's Repository pattern: https://martinfowler.com/eaaCatalog/repository.html
-```
+````
 
 ---
 
@@ -180,6 +184,8 @@ struct UserRepository: UserRepositoryType {
 Use for straightforward preferences without complex trade-offs.
 
 ```markdown
+# Decision: [concise title]
+
 ## Decision
 [What was decided]
 
@@ -192,7 +198,7 @@ Use for straightforward preferences without complex trade-offs.
 
 ### Filled Example
 
-```markdown
+````markdown
 # Decision: Use `async let` over `TaskGroup` for fixed-count parallel work
 
 ## Decision
@@ -218,4 +224,4 @@ await withTaskGroup(of: Item.self) { group in
     // ...
 }
 ```
-```
+````

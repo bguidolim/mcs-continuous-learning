@@ -95,7 +95,7 @@ Research should **enrich** project-specific knowledge, not replace it. The goal 
 
 ### Step 4: Structure and Save
 
-Read [references/templates.md](references/templates.md) for template structures and staleness rules, then apply the appropriate template.
+Read [references/templates.md](references/templates.md) for template structures and staleness rules. For learnings, use the Learning Memory Template. For decisions, use the ADR-Inspired Template for complex trade-offs or the Simplified Template for straightforward preferences.
 
 **Save:**
 ```

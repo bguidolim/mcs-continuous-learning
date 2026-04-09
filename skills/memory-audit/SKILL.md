@@ -33,7 +33,7 @@ Evaluate each memory against these dimensions:
 
 ### 3. Naming Convention
 - Learnings must follow `learning_<topic>_<specific>.md`
-- Decisions must follow `decision_<domain>_<topic>.md`
+- Decisions must follow `decision_<domain>_<topic>.md` — see the domain prefixes table in the [continuous-learning skill](../continuous-learning/SKILL.md) for valid domains.
 - Files that don't follow either pattern are likely older or ad-hoc — flag for rename or reclassification.
 
 ### 4. Duplication
@@ -42,7 +42,7 @@ Evaluate each memory against these dimensions:
 - Search the existing knowledge base or memory files for semantically similar content — two memories may use different names but cover the same ground.
 
 ### 5. Quality
-- Does the memory use the structured template (Problem/Solution for learnings, Context/Decision/Rationale for decisions)?
+- Does the memory follow the templates in [continuous-learning/references/templates.md](../continuous-learning/references/templates.md)? (Problem/Trigger/Solution/Verification/Example for learnings; Decision/Context/Options/Choice/Consequences for ADR decisions; Decision/Rationale/Examples for simplified decisions)
 - Is the content specific enough to be useful but general enough to be reusable?
 - Are code examples still accurate?
 
