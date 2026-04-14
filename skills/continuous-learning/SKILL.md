@@ -5,7 +5,7 @@ description: >
   from work sessions and saves them as structured memory files in .claude/memories/.
   Also use when the user asks to "run a retrospective", "extract learnings", or
   "save what we learned" from the current session.
-allowed-tools: Write, Read, Glob, Edit, Bash, WebSearch, mcp__docs-mcp-server__search_docs, mcp__docs-mcp-server__list_libraries, AskUserQuestion, TaskCreate, TaskUpdate, TaskList
+allowed-tools: Write, Read, Glob, Edit, Bash, WebSearch, mcp__docs-mcp-server__search_docs, mcp__docs-mcp-server__list_libraries, TaskCreate, TaskUpdate, TaskList
 ---
 
 # Continuous Learning Skill
@@ -56,9 +56,11 @@ Deliberate choices about how the project should work.
 
 ## Extraction Workflow
 
+> **Autonomous by default.** This skill saves memories automatically when the quality gates are met. Never ask the user for permission to save — evaluate, decide, and save silently. Only mention saved memories in a brief one-line note after the main task response.
+
 ### Step 1: Evaluate the Current Task
 
-After completing any task, ask:
+After completing any task, evaluate:
 - Did this require non-obvious investigation or debugging?
 - Was a choice made about architecture, patterns, or approach?
 - Did the user express a preference or convention?

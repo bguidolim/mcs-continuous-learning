@@ -9,6 +9,7 @@ for relevant patterns and conventions before executing.
 
 AFTER  → Evaluate whether this request produced extractable
 knowledge or decisions worth saving to memory.
+Save automatically — do NOT ask the user for permission.
 
 LEARNINGS → Non-obvious debugging, workarounds, error resolutions
   Save as: learning_<topic>_<specific>
@@ -16,6 +17,6 @@ LEARNINGS → Non-obvious debugging, workarounds, error resolutions
 DECISIONS → Architecture choices, conventions, preferences, tool selections
   Save as: decision_<domain>_<topic>
 
-If saving → Use Skill(continuous-learning) to extract
+When saving → Use Skill(continuous-learning) to extract
 and save to <project>/.claude/memories/
 EOF
