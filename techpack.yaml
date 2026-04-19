@@ -64,6 +64,23 @@ components:
         section: AI Models
         command: curl
         args: ["-sf", "http://localhost:11434/api/show", "-d", "{\"name\":\"nomic-embed-text\"}"]
+      # Probes the exact endpoint docs-mcp-server calls. /api/show only reads the
+      # manifest — it does not load the model. This check forces a full load+embed
+      # round-trip, so a runner crash (e.g. Ollama/ggml incompatibility) surfaces
+      # as HTTP 500 and fails the check.
+      - type: commandExists
+        name: "nomic-embed-text embedding endpoint"
+        section: AI Models
+        command: curl
+        args:
+          - "-sf"
+          - "-X"
+          - "POST"
+          - "-H"
+          - "Content-Type: application/json"
+          - "-d"
+          - '{"model":"nomic-embed-text","input":"ping"}'
+          - "http://localhost:11434/v1/embeddings"
 
   # ── MCP Servers ─────────────────────────────────────────────────────────
   - id: docs-mcp-server
