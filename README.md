@@ -184,6 +184,12 @@ memory/
 
 ---
 
+## Companion Pack
+
+**[shared-memories](https://github.com/mcs-cli/shared-memories)** extends this pack by auto-syncing `.claude/memories/` across teammates via a dedicated git repo. Install both together when you want team-shared memory — `mcs-cli/memory` captures and retrieves, `shared-memories` distributes.
+
+---
+
 ## You Might Also Be Interested In
 
 | Pack | Description |
