@@ -102,9 +102,13 @@ mcp__docs-mcp-server__search_docs(library: "<project>", query: "<topic>")
 Glob(pattern: ".claude/memories/*.md")
 ```
 
-Determine if: update an existing memory, cross-link to related memories, or knowledge is already captured.
+Decide what to do, in this order of preference:
 
-**When the search surfaces a relevant neighbor** (a decision the new memory builds on, a learning with the same root cause, a memory that the new one contradicts or supersedes), add it to the new memory's `Related:` section. If the relationship is bidirectional, also `Edit` the neighbor to add a `Related:` link back — cross-references compound in value as the KB grows.
+1. **Knowledge is already captured.** Skip.
+2. **The new knowledge extends or refines an existing memory.** Prefer this: `Edit` the existing memory. The KB stays lean and a stronger single memory beats two partial ones.
+3. **The content is too different to merge but still related.** Save a new memory and add a `Related:` cross-link to the neighbor. If the relationship is bidirectional, also `Edit` the neighbor to add a reciprocal `Related:` entry.
+
+Use `Related:` for memories that share root causes, build on each other, contradict each other, or supersede older decisions. Don't cross-link every vaguely overlapping memory.
 
 ### Step 3: Research (When Appropriate)
 

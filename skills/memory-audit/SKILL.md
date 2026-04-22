@@ -44,6 +44,7 @@ Evaluate each memory against these dimensions:
 ### 4. Duplication
 - Does this memory overlap significantly with another memory?
 - Could two or more memories be merged into one stronger entry?
+- If overlap is partial and the memories are genuinely distinct (different root causes, different scopes, or different categories like a `learning_` warning next to a `decision_` that resolved it), recommend UPDATE to cross-link them via `Related:` instead of merging.
 - Search the existing knowledge base or memory files for semantically similar content — two memories may use different names but cover the same ground.
 
 ### 5. Quality
@@ -63,6 +64,7 @@ Evaluate each memory against these dimensions:
 - **Deep file paths** — full nested paths like `Sources/Features/Auth/Managers/Session/SessionManager.swift` are fragile. Recommend UPDATE to use module-level references unless the path is stable and well-known.
 - **Transient details** — feature flag names being removed, in-progress PR numbers, temporary workarounds with known expiry.
 - References to features/files that may have been removed or heavily refactored.
+- **Broken `Related:` links** — an entry in the memory's `Related:` section that points at a memory filename no longer present (DROP'd or renamed during a previous audit). Recommend UPDATE to fix the link to its new name or remove the entry.
 - Old dates without timeless content — treat as a signal for closer scrutiny, not an automatic DROP.
 
 ### 8. Personal Identifiers
