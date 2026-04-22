@@ -10,7 +10,7 @@ These apply to **all** templates below. See the [skill's Capture Rules section](
 - **Project-specific or a real gotcha.** Save when the knowledge is tied to *this* codebase, **or** when it's a non-obvious language/framework/tool gotcha the project hit through debugging. Skip when the memory duplicates **public** documentation anyone could look up (language reference, public CLI/API docs). Summaries of **internal** docs (Confluence, ADRs, RFCs, wiki) are fine — include the source in `References:` so the memory doesn't drift from the original.
 - **Anonymous.** No personal names, GitHub/Slack handles, or emails anywhere in the memory — not in the problem description, not in examples, not in commit or PR references that expose authorship. Describe the artifact (the bug, the pattern, the decision), not who touched it. Omit the actor; do not invent a role for them.
 - **Project pattern, not preference.** Every `decision_` needs evidence it's actually a project pattern: consistent use in the codebase, lint/formatter config, docs, or a team agreement (written *or* verbal — Slack / meeting / session consensus count). If the only support is *"I prefer X,"* skip.
-  - *Bad patterns in the code:* one engineer flagging it → `learning_` warning. Team has agreed it's bad → `decision_` (e.g. deprecating or replacing it). The rule doesn't entrench bad code; it just routes the memory to the right category.
+  - *Bad patterns in the code:* one engineer flagging it → `learning_` warning (only when it has trigger / symptom / workaround shape). Team has agreed it's bad → `decision_` (e.g. deprecating or replacing it). Pure "should be refactored someday" observations belong in the issue tracker, not the KB.
 
 ### `Applies to`
 
@@ -63,8 +63,11 @@ These apply to **all** templates below:
 ## Notes
 [Caveats, edge cases, related considerations]
 
+## Related
+[Cross-links to other memories in this KB — the ones that give context, share root causes, or conflict. Use filenames, e.g. `decision_architecture_repository_pattern`.]
+
 ## References
-[Links to documentation, articles, resources]
+[Links to external/internal documentation, articles, resources]
 ```
 
 ### Filled Example
@@ -112,6 +115,9 @@ performRequest { result in
 - `beginBackgroundTask` gives ~30 seconds on iOS; the exact duration is not guaranteed
 - Multiple background tasks can be active simultaneously — each needs its own identifier and cleanup
 
+## Related
+- `decision_networking_retry_policy` — retry behavior that interacts with background task lifetime
+
 ## References
 - https://developer.apple.com/documentation/uikit/uiapplication/1623031-beginbackgroundtask
 ````
@@ -148,6 +154,9 @@ Use for architectural decisions, tool choices, or patterns with meaningful trade
 
 ## Examples
 [Code examples showing the decision in practice]
+
+## Related
+[Cross-links to other memories in this KB — decisions this one supersedes or depends on, learnings that motivated it, conflicting memories that need reconciling.]
 
 ## References
 [Related documentation, discussions, or resources]
@@ -202,6 +211,10 @@ struct UserRepository: UserRepositoryType {
 }
 ```
 
+## Related
+- `decision_testing_mock_strategy` — how repository protocols are mocked in tests
+- `learning_cache_invalidation_stale_user` — cache edge case this pattern exposed
+
 ## References
 - Martin Fowler's Repository pattern: https://martinfowler.com/eaaCatalog/repository.html
 ````
@@ -225,6 +238,9 @@ Use for straightforward, evidence-backed decisions without complex trade-offs. T
 
 ## Examples
 [How to apply it]
+
+## Related
+[Cross-links to other memories in this KB — decisions this one builds on, learnings that motivated it. Omit if none apply.]
 ```
 
 ### Filled Example
@@ -256,4 +272,7 @@ await withTaskGroup(of: Item.self) { group in
     // ...
 }
 ```
+
+## Related
+- `decision_architecture_concurrency_model` — broader async/await conventions this fits into
 ````

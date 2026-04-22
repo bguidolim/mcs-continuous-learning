@@ -63,7 +63,7 @@ Every memory must satisfy all three rules, regardless of whether the KB is used 
 - **Project-specific or a real gotcha.** The memory must be about *this* codebase's architecture, conventions, bugs, or workflows — **or** a non-obvious language/framework/tool gotcha that the project actually hit through debugging. **Public** documentation anyone could look up (language reference, framework README, public CLI docs, public API reference) does not belong here. **Internal** project docs (Confluence pages, ADRs, RFCs, team wiki) are different: summarizing one into a memory *is* project knowledge, provided the memory links back to the source in `References:` so it doesn't silently drift. The test is *"could a reader find this in public docs?"* If yes → skip. If the knowledge is a discovery, a footgun, or lives only in internal docs, save it.
 - **Anonymous.** No personal names, GitHub/Slack handles, or emails anywhere in the memory — not in the problem description, not in examples, not in narration of "who did what." Describe the artifact (the bug, the pattern, the decision), not who touched it. Omit the actor; do not invent a role for them. Applies even in a single-user KB — identifiers age badly and add no signal.
 - **Project pattern, not personal preference.** Capture what the *project* does, not what the engineer driving the session likes. A pattern qualifies when any of these hold: it's enforced by lint/formatter config, documented in a style guide or ADR, agreed by the team (written *or* verbal — Slack, meeting, session-level consensus all count), **or** already used consistently in the codebase. The codebase itself is the strongest evidence — if the pattern is demonstrably present in existing code, it's a pattern. If none of those hold and the only support is *"I prefer,"* *"I like,"* *"my style,"* it's a preference — do not save. When in doubt, the project's existing patterns win over the engineer's taste.
-  - **Bad patterns present in the code** are handled by category, not by blocking the capture. If one engineer flags a pattern as bad without team ratification, save a `learning_` warning (e.g. `learning_dont_use_X_because_Y`). If the team has agreed the pattern is bad and should be avoided or replaced, the team agreement itself makes it a `decision_` (e.g. `decision_architecture_deprecate_X`). Either way, the bad pattern doesn't silently become a `decision_` just by being in the code.
+  - **Bad patterns present in the code** are handled by category, not by blocking the capture. If one engineer flags a pattern as bad without team ratification, save a `learning_` warning (e.g. `learning_dont_use_X_because_Y`) — **only** when the warning has actionable shape: trigger (*"when you use X in case Y…"*), symptom (*"…it leaks / races / drops data"*), and avoidance (*"use Z instead"*). If the team has agreed the pattern is bad and should be avoided or replaced, the team agreement itself makes it a `decision_` (e.g. `decision_architecture_deprecate_X`). Pure *"this should be refactored someday"* observations without an actionable shape don't belong in the KB — they belong in the issue tracker.
 
 ## Extraction Workflow
 
@@ -102,7 +102,9 @@ mcp__docs-mcp-server__search_docs(library: "<project>", query: "<topic>")
 Glob(pattern: ".claude/memories/*.md")
 ```
 
-Determine if: update an existing memory, cross-reference related memories, or knowledge is already captured.
+Determine if: update an existing memory, cross-link to related memories, or knowledge is already captured.
+
+**When the search surfaces a relevant neighbor** (a decision the new memory builds on, a learning with the same root cause, a memory that the new one contradicts or supersedes), add it to the new memory's `Related:` section. If the relationship is bidirectional, also `Edit` the neighbor to add a `Related:` link back — cross-references compound in value as the KB grows.
 
 ### Step 3: Research (When Appropriate)
 
