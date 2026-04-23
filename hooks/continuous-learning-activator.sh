@@ -10,7 +10,8 @@ If this request produced non-obvious knowledge or a deliberate decision
 worth preserving, use Skill(continuous-learning) to save autonomously
 to <project>/.claude/memories/. Do not ask permission.
 
-LEARNINGS → Non-obvious debugging, workarounds, error resolutions
+LEARNINGS → Project-specific debugging, workarounds, or error resolutions
+  tied to this codebase's code, config, or workflow
   Save as: learning_<topic>_<specific>
 
 DECISIONS → Architecture choices, project conventions, tool selections

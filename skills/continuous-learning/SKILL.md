@@ -60,7 +60,7 @@ Deliberate choices about how the project should work.
 
 Every memory must satisfy all three rules, regardless of whether the KB is used by one engineer or shared with a team.
 
-- **Project-specific or a real gotcha.** The memory must be about *this* codebase's architecture, conventions, bugs, or workflows — **or** a non-obvious language/framework/tool gotcha that the project actually hit through debugging. **Public** documentation anyone could look up (language reference, framework README, public CLI docs, public API reference) does not belong here. **Internal** project docs (Confluence pages, ADRs, RFCs, team wiki) are different: summarizing one into a memory *is* project knowledge, provided the memory links back to the source in `References:` so it doesn't silently drift. The test is *"could a reader find this in public docs?"* If yes → skip. If the knowledge is a discovery, a footgun, or lives only in internal docs, save it.
+- **Tied to at least one project.** The memory must be about the architecture, conventions, bugs, workflows, or tool interactions of at least one real project, named in `Applies to:`. Multi-project captures are fine: if the same convention genuinely holds across several repos, list them comma-separated. What's excluded is free-floating language, framework, or CLI knowledge with no project anchor — even when it felt like a discovery in the moment; that belongs in the tool's own docs, not here. **Public** documentation anyone could look up (language reference, framework README, public CLI docs, public API reference) is also out. **Internal** project docs (Confluence pages, ADRs, RFCs, team wiki) are different: summarizing one into a memory *is* project knowledge, provided the memory links back to the source in `References:` so it doesn't silently drift. The test is *"Name the project(s) this applies to and why."* If the answer is "any project, it's just how the tool works" → skip.
 - **Anonymous.** No personal names, GitHub/Slack handles, or emails anywhere in the memory — not in the problem description, not in examples, not in narration of "who did what." Describe the artifact (the bug, the pattern, the decision), not who touched it. Omit the actor; do not invent a role for them. Applies even in a single-user KB — identifiers age badly and add no signal.
 - **Project pattern, not personal preference.** Capture what the *project* does, not what the engineer driving the session likes. A pattern qualifies when any of these hold: it's enforced by lint/formatter config, documented in a style guide or ADR, agreed by the team (written *or* verbal — Slack, meeting, session-level consensus all count), **or** already used consistently in the codebase. The codebase itself is the strongest evidence — if the pattern is demonstrably present in existing code, it's a pattern. If none of those hold and the only support is *"I prefer,"* *"I like,"* *"my style,"* it's a preference — do not save. When in doubt, the project's existing patterns win over the engineer's taste.
   - **Bad patterns present in the code** are handled by category, not by blocking the capture. If one engineer flags a pattern as bad without team ratification, save a `learning_` warning (e.g. `learning_dont_use_X_because_Y`) — **only** when the warning has actionable shape: trigger (*"when you use X in case Y…"*), symptom (*"…it leaks / races / drops data"*), and avoidance (*"use Z instead"*). If the team has agreed the pattern is bad and should be avoided or replaced, the team agreement itself makes it a `decision_` (e.g. `decision_architecture_deprecate_X`). Pure *"this should be refactored someday"* observations without an actionable shape don't belong in the KB — they belong in the issue tracker.
@@ -82,7 +82,7 @@ After completing any task, evaluate in two stages.
 If NO to all → skip. Otherwise continue to Stage B.
 
 **Stage B — Does it meet the Capture Rules?**
-- Is it project-specific **or** a non-obvious gotcha the project hit through debugging (not documentation-style reference material)?
+- Is it tied to at least one real project in `Applies to:` — its code, config, workflow, or an internal doc — rather than generic tool/language reference?
 - Is it free of personal identifiers?
 - Is it a project pattern (visible in the codebase, enforced by config, documented, or agreed by the team — written or verbal), not a single engineer's preference?
 
@@ -127,6 +127,8 @@ Read [references/templates.md](references/templates.md) for template structures 
 
 **Fill in `Applies to`** at the top of every memory. Default to the current project's root directory name (the same value used as the `library` parameter when calling `search_docs`). If the session made it clear the memory applies to multiple projects, list them comma-separated. This field is informational — it helps semantic search and makes the memory portable if it's later consolidated into a cross-project knowledge base.
 
+**Pre-save identifier scan (mandatory).** Before `Write`, scan the drafted content for personal identifiers. Look for `@` characters (handles, emails), `<word>/<TICKET>-` and `<word>/<ticket>-description` branch-name shapes, `<word>@<word>` email shapes, and any first-name-looking tokens in examples, commit references, or narration. Any hit → rewrite to describe the artifact (the bug, pattern, decision) without the actor, or skip the save. This is a mechanical grep step, not a vibe check — the Quality Gates checkbox is not enough on its own.
+
 **Save:**
 ```
 Write(file_path: "<project>/.claude/memories/<category>_<topic>_<specific>.md", content: "<structured markdown>")
@@ -151,7 +153,7 @@ Before saving any memory, verify:
 - [ ] Does not duplicate existing memories
 - [ ] References included if external sources were consulted
 - [ ] No brittle references that rot quickly (see Staleness Prevention below)
-- [ ] Knowledge is project-specific **or** a non-obvious gotcha the project discovered through debugging (not documentation-style reference material anyone could look up)
+- [ ] Knowledge is tied to at least one real project in `Applies to:` (its code, config, workflow, or an internal doc) — not generic tool/language reference material anyone could look up
 - [ ] No personal identifiers (names, GitHub/Slack handles, emails); actors anonymized or omitted
 - [ ] Captures a project pattern, not an individual preference (evidence: consistent use in the codebase, lint/formatter config, docs, or team agreement — written or verbal)
 
@@ -159,17 +161,15 @@ Before saving any memory, verify:
 
 Anti-examples, generalized — do not create memories like these:
 
-| Category | Why it fails |
-|----------|--------------|
-| Public tool / CLI reference | How a third-party command or flag works per its public docs — belongs in that tool's docs, not a project KB |
-| Documented language / framework behavior | A language feature or framework API working exactly as its public docs describe — anyone can read them |
-| Public API reference | Rate limits, auth flows, endpoint shapes of a public API, absent a project-specific twist |
-| Personal identifier | Any memory whose content names an engineer, handle, or email — even in an example or footnote |
-| Personal preference | A `decision_` not reflected in the codebase, not in any config/doc, and not agreed by the team (written or verbal) — just one engineer's taste |
+| Category | Concrete anti-example | Why it fails |
+|----------|-----------------------|--------------|
+| Public tool / CLI reference | "`git rebase -i` opens an editor with a todo list" | Git's own docs cover this verbatim |
+| Documented language / framework behavior | "`$status` is read-only in zsh" | First hit in `man zshparam` — no project anchor |
+| Public API reference | "GitHub API rate limit is 5000/hr authenticated" | Public API docs, no project-specific twist |
+| Personal identifier | Problem section says *"`@alice` hit a cache bug"* | Rule 2 violation — names an engineer |
+| Personal preference without project evidence | "Prefer early returns" with no lint rule, consistent codebase usage, or team agreement | Rule 3 violation — taste, not pattern |
 
-**Language / framework gotchas are fair game** when they're non-obvious and the project discovered them through debugging — even if the underlying mechanic is generic. Example: a strong-reference-cycle bite in a language's closure semantics, a silent mutation in a stdlib container, a framework lifecycle ordering surprise. Those are learnings, not documentation.
-
-**Internal docs are fair game too.** A memory summarizing a Confluence page, ADR, RFC, or team-wiki entry is project knowledge — those sources aren't "documentation anyone can look up." Always include the source URL in `References:` so the memory points at the canonical version and readers can check for drift.
+**Internal docs are fair game.** A memory summarizing a Confluence page, ADR, RFC, or team-wiki entry is project knowledge — those sources aren't "documentation anyone can look up." Always include the source URL in `References:` so the memory points at the canonical version and readers can check for drift.
 
 When the underlying knowledge *is* salvageable, rewrite before saving — or skip entirely:
 
@@ -194,7 +194,7 @@ When the user asks to "run a retrospective", "extract learnings from this sessio
 
 1. Review conversation history for extractable knowledge
 2. Search existing memories following Step 2 of the Extraction Workflow
-3. List candidates with brief justifications — prioritize by the evaluation criteria in Step 1 (non-obvious investigation, architectural choices, established project conventions). Filter the list through the Capture Rules before presenting it — drop anything that's documentation-style, names an engineer, or is a personal preference without project evidence.
+3. List candidates with brief justifications — prioritize by the evaluation criteria in Step 1 (non-obvious investigation, architectural choices, established project conventions). Filter the list through the Capture Rules before presenting it — drop anything that's generic tool/language reference with no project tie, names an engineer, or is a personal preference without project evidence.
 4. Extract top 1-3 highest-value memories
 5. Report what was created and why
 
