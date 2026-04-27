@@ -81,10 +81,11 @@ After completing any task, evaluate in two stages.
 
 If NO to all → skip. Otherwise continue to Stage B.
 
-**Stage B — Does it meet the Capture Rules?**
-- Is it tied to at least one real project in `Applies to:` — its code, config, workflow, or an internal doc — rather than generic tool/language reference?
-- Is it free of personal identifiers?
-- Is it a project pattern (visible in the codebase, enforced by config, documented, or agreed by the team — written or verbal), not a single engineer's preference?
+**Stage B — Apply the Capture Rules above. Each is a hard gate; all three must pass.**
+
+1. **Project-tied** (Rule 1). Run the **strip-the-anchors test**: mentally delete every project-specific reference (paths, symbols, endpoints, business logic) from the draft. If what's left is still worth saving on its own, the project tie was decoration and the substance is tool/tooling knowledge — skip, or rewrite so the project-specific part *is* the substance. **Internal or proprietary tools are not exempt:** how a private CLI, MCP server, GUI, or company-internal tool *works in general* belongs in the tool's own docs or in `CLAUDE.local.md`, never in project memory. Test phrasing: *"would another engineer cloning this repo on a fresh machine without my dev tools still find this useful?"*
+2. **Anonymous** (Rule 2). Also enforced mechanically by the pre-save identifier scan in Step 4.
+3. **Pattern, not preference** (Rule 3). Strongest evidence: consistent use in the codebase. Also valid: lint/formatter config, style guide, team agreement (written or verbal).
 
 All three must pass. If any fail, either rewrite the memory to satisfy them (e.g. anonymize an actor) or skip. Do not save partial-fit memories.
 
@@ -143,6 +144,8 @@ Edit(file_path: "<project>/.claude/memories/<existing_name>.md", old_string: "<s
 
 ## Quality Gates
 
+> Capture Rules are gated in **Stage B** above; do not re-evaluate them here. This checklist covers formatting, quality, staleness, and security only — different concerns.
+
 Before saving any memory, verify:
 - [ ] Name follows the correct pattern (`learning_` or `decision_<domain>_`)
 - [ ] Content uses the appropriate template from references/templates.md
@@ -153,9 +156,6 @@ Before saving any memory, verify:
 - [ ] Does not duplicate existing memories
 - [ ] References included if external sources were consulted
 - [ ] No brittle references that rot quickly (see Staleness Prevention below)
-- [ ] Knowledge is tied to at least one real project in `Applies to:` (its code, config, workflow, or an internal doc) — not generic tool/language reference material anyone could look up
-- [ ] No personal identifiers (names, GitHub/Slack handles, emails); actors anonymized or omitted
-- [ ] Captures a project pattern, not an individual preference (evidence: consistent use in the codebase, lint/formatter config, docs, or team agreement — written or verbal)
 
 ### Do Not Save
 
@@ -164,6 +164,7 @@ Anti-examples, generalized — do not create memories like these:
 | Category | Concrete anti-example | Why it fails |
 |----------|-----------------------|--------------|
 | Public tool / CLI reference | "`git rebase -i` opens an editor with a todo list" | Git's own docs cover this verbatim |
+| Internal / proprietary tool reference | "How to write a mock rule in `<company-internal-proxy>` to return 500 for endpoint X, plus where the rules JSON lives on disk" | Tool mechanics — applies to any project using that tool, not specific to this codebase. Sprinkling project endpoints into the example doesn't make it project knowledge. Belongs in the tool's own docs or `CLAUDE.local.md`. |
 | Documented language / framework behavior | "`$status` is read-only in zsh" | First hit in `man zshparam` — no project anchor |
 | Public API reference | "GitHub API rate limit is 5000/hr authenticated" | Public API docs, no project-specific twist |
 | Personal identifier | Problem section says *"`@alice` hit a cache bug"* | Rule 2 violation — names an engineer |
