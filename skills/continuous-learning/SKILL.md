@@ -77,7 +77,7 @@ After completing any task, evaluate in two stages.
 - Did this require non-obvious investigation or debugging?
 - Was a choice made about architecture, patterns, or approach?
 - Is there an established project convention worth documenting?
-- Would future sessions benefit from having this documented?
+- Without this, would someone make a different decision in the project?
 
 If NO to all → skip. Otherwise continue to Stage B.
 
@@ -169,6 +169,10 @@ Anti-examples, generalized — do not create memories like these:
 | Public API reference | "GitHub API rate limit is 5000/hr authenticated" | Public API docs, no project-specific twist |
 | Personal identifier | Problem section says *"`@alice` hit a cache bug"* | Rule 2 violation — names an engineer |
 | Personal preference without project evidence | "Prefer early returns" with no lint rule, consistent codebase usage, or team agreement | Rule 3 violation — taste, not pattern |
+| Historical record of a one-time shipped change | "We renamed folder `Install/` to `Sync/` after the command rename" | Once shipped, `git log` answers this. Future sessions read current code, not the migration story. The memory adds nothing actionable. |
+| Generic engineering wisdom with a token project example | "Extract methods over condensing for lint compliance" with one PR cited | Strip the example — what's left is universal advice that fits any project. Belongs in a coding-style doc, not a per-project KB. |
+| One-line rule that belongs in CLAUDE.md | A single-sentence convention with no Context / Options / Consequences | If it fits in one bullet under "Conventions" in CLAUDE.md, put it there. A standalone memory file is overhead for content that can't grow. |
+| Naming/prefix decision once enforced | "We kept the `External` prefix on adapter types" | Once the type system, lint, or formatter enforces it, the decision lives in the code. Future sessions reads the code. |
 
 **Internal docs are fair game.** A memory summarizing a Confluence page, ADR, RFC, or team-wiki entry is project knowledge — those sources aren't "documentation anyone can look up." Always include the source URL in `References:` so the memory points at the canonical version and readers can check for drift.
 
