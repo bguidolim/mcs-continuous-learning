@@ -6,14 +6,12 @@ MANDATORY MEMORY PROTOCOL
 If this starts a new sub-task or phase (tests, refactor, deploy, etc.)
 → search the KB via search_docs for relevant patterns first.
 
-If this request produced non-obvious knowledge or a deliberate decision
-worth preserving, use Skill(continuous-learning) to save autonomously
-to <project>/.claude/memories/. Do not ask permission.
+If this request produced reusable knowledge worth preserving, invoke
+Skill(continuous-learning) — the skill evaluates and routes the knowledge
+to the correct destination (.claude/memories/ for codebase knowledge,
+CLAUDE.local.md for environment/tool config, or skip for public
+documentation). Do not ask permission.
 
-LEARNINGS → Project-specific debugging, workarounds, or error resolutions
-  tied to this codebase's code, config, or workflow
-  Save as: learning_<topic>_<specific>
-
-DECISIONS → Architecture choices, project conventions, tool selections
-  Save as: decision_<domain>_<topic>
+Do NOT Write to .claude/memories/ directly. Always go through the skill
+so the routing and quality gates run.
 EOF
